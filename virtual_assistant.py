@@ -34,7 +34,7 @@ def main():
 
 		you = listen("How can I help you")
 
-		if you == "":
+		if you == "":  # Recursion until the computer hear something
 			robot_brain = "I can't hear you, try again"
 		elif "your name" in you:
 			robot_brain = "My name is Mike"
@@ -42,16 +42,13 @@ def main():
 			robot_brain = "hi"
 		elif "hello" in you:
 			robot_brain = "Hello"
-		elif "today" in you:
+		elif "today" in you:  # Return the date
 			today = date.today()
 			robot_brain = today.strftime("%B %d %Y")
-		elif "time" in you:
+		elif "time" in you:  # Return time
 			now = datetime.now()
 			robot_brain = now.strftime("Now is %H hours %M minutes %S seconds")
-		elif "bye" in you:
-			speak("Goodbye")
-			break
-		elif "fact" in you:
+		elif "fact" in you:  # Output a ramdom fact
 			with open("facts.txt", "r") as f:
 				fact_list = f.read().split("\n")
 			robot_brain = random.choice(fact_list)
@@ -72,12 +69,13 @@ def main():
 				else:
 					speak("I can't hear you, try again")
 			continue
-		elif "YouTube" in you:
+		elif "YouTube" in you:  # Search on Youtube
 			kit.playonyt(you.replace("YouTube", ""))
-		elif "search" in you:
+		elif "search" in you:  # Search on Google
 			kit.search(you.replace("search", ""))
-		elif "repeat" in you:
-			pass
+		elif "bye" in you:
+			speak("Goodbye")
+			break
 		else:
 			robot_brain = "I'm not programed to answer this"
 		speak(robot_brain)
